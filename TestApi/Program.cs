@@ -1,4 +1,4 @@
-namespace TestApi;
+﻿namespace TestApi;
 
 public class Program
 {
@@ -40,6 +40,13 @@ public class Program
         })
         .WithName("GetWeatherForecast");
 
+        app.MapGet("/test", () => { return new Response(); }).WithName("Test");
+
         app.Run();
     }
+}
+
+public class Response
+{
+    public string Data { get; set; } = "Success";
 }
