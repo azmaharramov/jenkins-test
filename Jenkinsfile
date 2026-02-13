@@ -33,14 +33,15 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
-        sh """
-          sudo systemctl stop test-api || true
-          sudo rm -rf ${DEPLOY_PATH}/*
-          sudo cp -r publish/* ${DEPLOY_PATH}/
-          sudo systemctl start test-api
-        """
-      }
-    }
+	  steps {
+		sh """
+		  sudo mkdir -p ${DEPLOY_PATH}
+		  sudo systemctl stop test-api || true
+		  sudo rm -rf ${DEPLOY_PATH}/*
+		  sudo cp -r publish/* ${DEPLOY_PATH}/
+		  sudo systemctl start test-api
+		"""
+	  }
+	}
   }
 }
